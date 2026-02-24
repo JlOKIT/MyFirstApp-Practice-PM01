@@ -1,21 +1,18 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
 }
 
 android {
-    namespace = "com.example.myfirstapp"
+    namespace = "com.example.utils"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.myfirstapp"
         minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -34,12 +31,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":utils:"))
-
     implementation(libs.appcompat)
     implementation(libs.material)
-    implementation(libs.activity)
-    implementation(libs.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

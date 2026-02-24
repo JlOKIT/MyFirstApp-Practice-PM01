@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="32dp"
-    android:background="#E3F2FD">
+    android:padding="32dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Главное меню"
+        android:text="Список экранов"
         android:textSize="24sp"
         android:layout_marginBottom="32dp"/>
 
-    <Button
-        android:id="@+id/btnToProfile"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/lvScreens"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Перейти к профилю"/>
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:minHeight="200dp" />
 
 </LinearLayout>
