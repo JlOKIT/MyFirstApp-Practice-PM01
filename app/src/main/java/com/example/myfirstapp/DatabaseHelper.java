@@ -85,4 +85,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return result > 0;
     }
+    public List<Task> searchTasks(String query) {
+        List<Task> tasks = new ArrayList<>();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String selection = COLUMN_TITLE + " LIKE ?";
+            String[] selectionArgs = {"%" + query + "%"};
+            Cursor cursor = db.query(TABLE_TASKS, null, selection, selectionArgs, null, null, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Task task = new Task();
+                    task.setId(cursor.getInt(0));
+                    task.setTitle(cursor.getString(1));
+                    task.setDescription(cursor.getString(2));
+                    tasks.add(task);
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+            db.close();
+
+        } catch (Exception e) {
+            // Логирование ошибки
+            android.util.Log.e("DatabaseHelper", "Search error: " + e.getMessage());
+        }
+
+        return tasks;
+    }
 }
